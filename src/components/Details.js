@@ -23,9 +23,9 @@ function Details() {
 
     function setFilteredProducts(allProducts){
 
-        if(product==null) return;
+        if(product===null) return;
         let similarProducts = allProducts.filter((item)=>{
-            return product.category == item.category;
+            return product.category === item.category;
         });
         setProducts(similarProducts);
     }
