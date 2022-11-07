@@ -15,7 +15,7 @@ function Details() {
         fetch("https://fakestoreapi.com/products/" + productId)
             .then(response => response.json())
             .then(data => setProduct(data));
-    }, []);
+    }, [productId]);
 
     useEffect(()=>{
         setFilteredProducts(value);
