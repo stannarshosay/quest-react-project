@@ -1,16 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { ProductsContext } from "../App";
+import { addProducts } from "../features/product/productSlice";
 
 function Home() {
 
-    const [products, setProducts] = useState([]);
+    const products = useSelector((state)=>state.product.products);
+    const dispatch = useDispatch();
 
-    const value = useContext(ProductsContext);
-
-    useEffect(()=>{
-        setProducts(value);
-    },[value]);
+    useEffect(() => {
+      fetch("https://fakestoreapi.com/products")
+        .then(response => response.json())
+        .then(data => dispatch(addProducts(data)));
+    }, []);
 
     if (products.length)
         return (

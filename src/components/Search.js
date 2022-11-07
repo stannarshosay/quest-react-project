@@ -1,26 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { ProductsContext } from "../App";
+import { searchProducts } from "../features/product/productSlice";
 
 function Search() {
 
-    const [products, setProducts] = useState([]);
-
-    const value = useContext(ProductsContext);
-
-    useEffect(() => {
-        setProducts(value);
-    }, [value]);
+    const products = useSelector((state) => state.product.searchProducts);
+    const dispatch = useDispatch();
 
     function searchProduct(event) {
-
-        let searchedProducts = value.filter((product)=>{
-            return product.title.toLowerCase().includes(event.target.value.toLowerCase());
-        });
-
-        if(searchedProducts.length)
-            setProducts(searchedProducts);        
-
+        dispatch(searchProducts(event.target.value));
     }
 
     if (products.length)
@@ -46,14 +35,18 @@ function Search() {
             </>
         );
     return (
-        <div className="loader-container">
-            <div className="loader">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+        <>
+            <h1 className="text-center">Search Products</h1>
+            <input className="text-center" type="text" onInput={searchProduct}></input>
+            <div className="loader-container">
+                <div className="loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 
