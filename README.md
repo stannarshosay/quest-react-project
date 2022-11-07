@@ -1,3 +1,12 @@
+# DEMO
+
+https://react-quest-stan.000webhostapp.com/
+
+# An application for educational purposes, mind the errors and try correcting it to advance in the topics
+
+The branch 'context' focuses on basic implementation of react context whereas 'redux' focuses on react redux toolkit for app level state management
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
